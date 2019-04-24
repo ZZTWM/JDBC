@@ -35,20 +35,29 @@ public class TestJDBC_PreparedStatement_And_Statement {
 			/**
 			 * 使用Statement
 			 */
-			// Statement需要进行字符串拼接，可读性和维修性比较差
-			String sql0 = "insert into hero values(null," + "'战斗暴龙兽：Statement方式插入'" + "," + 313.0f + "," + 50 + ")";
-			s.execute(sql0);
+            // Statement执行10次，需要10次把SQL语句传输到数据库端
+            // 数据库要对每一次来的SQL语句进行编译处理
+			for (int i = 0; i < 100; i++) {
+				String sql0 = "insert into hero values(null," + "'战斗暴龙兽：Statement方式插入'" + "," + 313.0f + "," + 50 + ")";
+				s.execute(sql0);
+			}
+			s.close();
 			/**
 			 * 使用PreparedStatement
 			 */
-			//设置参数
-            // PreparedStatement 使用参数设置，可读性好，不易犯错
-            // "insert into hero values(null,?,?,?)";
-			ps.setString(1, "战斗暴龙兽：PreparedStatement方式插入");
-			ps.setFloat(2, 313.0f);
-			ps.setInt(3, 50);
-			//执行
-			ps.execute();
+            // PreparedStatement 执行10次，只需要1次把SQL语句传输到数据库端
+            // 数据库对带?的SQL进行预编译
+            // 每次执行，只需要传输参数到数据库端
+            // 1. 网络传输量比Statement更小
+            // 2. 数据库不需要再进行编译，响应更快
+			for (int i = 0; i < 10; i++) {
+				//设置参数
+				ps.setString(1, "战斗暴龙兽：PreparedStatement方式插入");
+				ps.setFloat(2, 313.0f);
+				ps.setInt(3, 50);
+				//执行
+				ps.execute();
+			}
 			
 		}catch (SQLException e){
 			e.printStackTrace();
