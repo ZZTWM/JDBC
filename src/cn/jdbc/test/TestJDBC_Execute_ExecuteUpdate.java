@@ -2,6 +2,7 @@ package cn.jdbc.test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -31,8 +32,8 @@ public class TestJDBC_Execute_ExecuteUpdate {
             s.executeUpdate(sqlDelete);
             s.executeUpdate(sqlUpdate);
 			
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 	}
