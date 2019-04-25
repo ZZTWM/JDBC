@@ -21,7 +21,7 @@ public class TestJDBC_06 {
 		/**
 		 * 创建与数据库的连接
 		 * 创建PreparedStatement
-		 */
+		 */ 
 		try(
 			Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/how2java?characterEncoding=UTF-8","root","admin");
 			PreparedStatement ps = c.prepareStatement(sql);
