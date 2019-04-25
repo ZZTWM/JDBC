@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * 分页查询
+ * 分页查询：executeQuery方式
  */
 public class TestJDBC_05 {
 	
