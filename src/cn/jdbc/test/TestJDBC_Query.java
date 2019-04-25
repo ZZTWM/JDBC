@@ -37,7 +37,7 @@ public class TestJDBC_Query {
             	String name = rs.getString(2);//也可以使用字段的顺序
             	float hp = rs.getFloat("hp");
             	int damage = rs.getInt(4);
-            	System.out.printf("%d\t%s\t&%f\t%d%n",id,name,hp,damage);
+            	System.out.printf("%d\t%s\t%f\t%d%n",id,name,hp,damage);
             }
             //不一定要在这里关闭ReultSet，因为Statement关闭的时候，会自动关闭ResultSet
             //rs.close();
